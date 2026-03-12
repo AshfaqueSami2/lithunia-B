@@ -120,6 +120,65 @@
       font-size: 0.95rem;
     }
 
+    .contact {
+      margin-top: 20px;
+      border: 1px solid #334155;
+      border-radius: 14px;
+      padding: 18px 20px;
+      background: #0b1220;
+    }
+
+    .contact h2 {
+      margin: 0 0 14px;
+      font-size: 1rem;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .contact-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .contact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      text-decoration: none;
+      border: 1px solid #334155;
+      border-radius: 10px;
+      padding: 10px 16px;
+      font-size: 0.92rem;
+      font-weight: 500;
+      transition: border-color 0.18s, background 0.18s;
+    }
+
+    .contact-link.email {
+      color: var(--accent);
+      background: rgba(56, 189, 248, 0.07);
+    }
+
+    .contact-link.email:hover {
+      border-color: var(--accent);
+      background: rgba(56, 189, 248, 0.15);
+    }
+
+    .contact-link.whatsapp {
+      color: #4ade80;
+      background: rgba(74, 222, 128, 0.07);
+    }
+
+    .contact-link.whatsapp:hover {
+      border-color: #4ade80;
+      background: rgba(74, 222, 128, 0.15);
+    }
+
+    .contact-link svg {
+      flex-shrink: 0;
+    }
+
     @media (max-width: 640px) {
       .card { padding: 20px; }
       .timer { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -160,6 +219,25 @@
 
     <div class="note">
       Kindly process the payment immediately to avoid further delay.
+    </div>
+
+    <div class="contact">
+      <h2>Contact Me</h2>
+      <div class="contact-links">
+        <a class="contact-link email" href="mailto:samsaimma@gmail.com">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="4" width="20" height="16" rx="2"/>
+            <path d="M2 7l10 7 10-7"/>
+          </svg>
+          samsaimma@gmail.com
+        </a>
+        <a class="contact-link whatsapp" href="https://wa.me/8801560035123" target="_blank" rel="noopener">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M20.52 3.48A11.93 11.93 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.12.55 4.18 1.6 6L0 24l6.18-1.62A11.93 11.93 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.2-1.25-6.21-3.48-8.52zM12 22a9.94 9.94 0 0 1-5.08-1.39l-.36-.22-3.68.97.98-3.59-.24-.38A9.94 9.94 0 0 1 2 12C2 6.48 6.48 2 12 2s10 4.48 10 10-4.48 10-10 10zm5.47-7.4c-.3-.15-1.77-.87-2.04-.97s-.47-.15-.67.15-.77.97-.94 1.17-.35.22-.64.07a8.12 8.12 0 0 1-2.39-1.48 8.96 8.96 0 0 1-1.65-2.06c-.17-.3-.02-.46.13-.6.13-.13.3-.35.44-.52s.2-.3.3-.5.05-.37-.02-.52-.67-1.61-.92-2.2c-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37s-1.04 1.01-1.04 2.47 1.06 2.86 1.21 3.06 2.09 3.19 5.06 4.47c.71.31 1.26.49 1.69.63.71.22 1.35.19 1.86.12.57-.09 1.77-.72 2.02-1.42s.25-1.3.17-1.42-.25-.2-.55-.35z"/>
+          </svg>
+          +880 1560 035123
+        </a>
+      </div>
     </div>
   </main>
 
