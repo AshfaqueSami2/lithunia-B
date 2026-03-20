@@ -3,375 +3,483 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Site Suspended | Payment Due</title>
-  <meta
-    name="description"
-    content="This website is temporarily offline because payment has been overdue since March 1, 2026."
-  />
+  <title>What We Do — Amatatek</title>
+  <meta name="description" content="We enhance the systems your business already relies on — supercharging your existing interfaces, CRMs and management systems with AI." />
+
+  <!-- Favicon -->
   <link rel="apple-touch-icon" sizes="180x180" href="logo/favicon_io%20(3)/apple-touch-icon.png" />
   <link rel="icon" type="image/png" sizes="32x32" href="logo/favicon_io%20(3)/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="logo/favicon_io%20(3)/favicon-16x16.png" />
   <link rel="icon" type="image/x-icon" href="logo/favicon_io%20(3)/favicon.ico" />
   <link rel="manifest" href="logo/favicon_io%20(3)/site.webmanifest" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Cormorant+Garamond:wght@600&display=swap"
-    rel="stylesheet"
-  />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
   <style>
-    :root {
-      --bg: #07111f;
-      --bg-soft: #0f2137;
-      --card: rgba(10, 24, 41, 0.76);
-      --card-border: rgba(255, 255, 255, 0.12);
-      --text: #f5f0e8;
-      --muted: #b8c6d8;
-      --accent: #ff8f5c;
-      --accent-soft: #ffd6c3;
-      --danger: #ff645a;
-      --shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+    html {
+      scroll-behavior: smooth;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
     }
-
-    * {
-      box-sizing: border-box;
+    :target {
+      scroll-margin-top: 90px;
     }
-
-    html,
-    body {
-      margin: 0;
-      min-height: 100%;
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
+    .animate-fade-in-up { animation: fadeInUp 0.6s ease-out forwards; }
+    .animate-delay-100  { animation-delay: 0.1s; }
+    .animate-delay-200  { animation-delay: 0.2s; }
 
-    body {
-      font-family: "Space Grotesk", sans-serif;
-      background:
-        radial-gradient(circle at top left, rgba(255, 143, 92, 0.20), transparent 30%),
-        radial-gradient(circle at bottom right, rgba(116, 170, 255, 0.18), transparent 35%),
-        linear-gradient(145deg, var(--bg) 0%, #0a1626 45%, var(--bg-soft) 100%);
-      color: var(--text);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-      overflow-x: hidden;
+    input:focus, textarea:focus {
+      box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.15);
     }
-
-    body::before,
-    body::after {
-      content: "";
-      position: fixed;
-      inset: auto;
-      pointer-events: none;
-      border-radius: 999px;
-      filter: blur(16px);
-      opacity: 0.6;
-    }
-
-    body::before {
-      width: 220px;
-      height: 220px;
-      top: 8%;
-      right: 7%;
-      background: rgba(255, 143, 92, 0.18);
-      animation: drift 11s ease-in-out infinite;
-    }
-
-    body::after {
-      width: 280px;
-      height: 280px;
-      bottom: 4%;
-      left: 5%;
-      background: rgba(104, 145, 255, 0.16);
-      animation: drift 13s ease-in-out infinite reverse;
-    }
-
-    .shell {
-      width: min(1100px, 100%);
-      position: relative;
-    }
-
-    .panel {
-      position: relative;
+    .mobile-menu {
+      max-height: 0;
       overflow: hidden;
-      background: var(--card);
-      border: 1px solid var(--card-border);
-      border-radius: 28px;
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(18px);
-      padding: 28px;
+      transition: max-height 0.3s ease-out;
     }
-
-    .panel::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(130deg, rgba(255, 255, 255, 0.08), transparent 35%),
-        linear-gradient(320deg, rgba(255, 143, 92, 0.12), transparent 30%);
-      pointer-events: none;
-    }
-
-    .grid {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      grid-template-columns: 1.35fr 0.95fr;
-      gap: 24px;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 14px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.06);
-      color: var(--accent-soft);
-      font-size: 0.82rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-    }
-
-    .dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: var(--danger);
-      box-shadow: 0 0 0 8px rgba(255, 100, 90, 0.12);
-    }
-
-    h1 {
-      font-family: "Cormorant Garamond", serif;
-      font-size: clamp(3rem, 8vw, 5.6rem);
-      line-height: 0.95;
-      margin: 22px 0 18px;
-      letter-spacing: -0.03em;
-    }
-
-    .lead {
-      max-width: 38rem;
-      margin: 0;
-      color: var(--muted);
-      font-size: clamp(1rem, 2vw, 1.15rem);
-      line-height: 1.75;
-    }
-
-    .notice {
-      margin-top: 28px;
-      padding: 20px 22px;
-      border-radius: 22px;
-      background: linear-gradient(135deg, rgba(255, 143, 92, 0.16), rgba(255, 255, 255, 0.04));
-      border: 1px solid rgba(255, 143, 92, 0.24);
-    }
-
-    .notice strong {
-      display: block;
-      margin-bottom: 8px;
-      font-size: 1.05rem;
-      color: #fff4ed;
-    }
-
-    .notice p {
-      margin: 0;
-      color: var(--accent-soft);
-      line-height: 1.7;
-    }
-
-    .meta {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
-      margin-top: 24px;
-    }
-
-    .meta-card,
-    .contact-card {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 20px;
-      padding: 18px;
-    }
-
-    .label {
-      color: var(--muted);
-      font-size: 0.85rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      margin-bottom: 10px;
-    }
-
-    .value {
-      font-size: 1.15rem;
-      line-height: 1.5;
-      color: var(--text);
-    }
-
-    .side {
-      display: grid;
-      gap: 16px;
-      align-content: start;
-    }
-
-    .side h2 {
-      margin: 0 0 4px;
-      font-size: 1.35rem;
-    }
-
-    .side p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.7;
-    }
-
-    a {
-      color: inherit;
-    }
-
-    .contact-card a {
-      text-decoration: none;
-    }
-
-    .contact-card:hover {
-      transform: translateY(-2px);
-      border-color: rgba(255, 143, 92, 0.35);
-    }
-
-    .contact-card {
-      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
-    }
-
-    .contact-title {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      margin-bottom: 8px;
-    }
-
-    .contact-title span:last-child {
-      color: var(--accent);
-      font-size: 0.9rem;
-    }
-
-    .status-strip {
-      margin-top: 10px;
-      padding-top: 18px;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-      color: var(--muted);
-      font-size: 0.95rem;
-      line-height: 1.7;
-    }
-
-    .footer-note {
-      margin-top: 18px;
-      color: #d8e1ec;
-      font-size: 0.92rem;
-    }
-
-    @keyframes drift {
-      0%,
-      100% {
-        transform: translate3d(0, 0, 0) scale(1);
-      }
-      50% {
-        transform: translate3d(0, -12px, 0) scale(1.04);
-      }
-    }
-
-    @media (max-width: 900px) {
-      .grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media (max-width: 640px) {
-      body {
-        padding: 16px;
-      }
-
-      .panel {
-        padding: 20px;
-        border-radius: 24px;
-      }
-
-      .meta {
-        grid-template-columns: 1fr;
-      }
-    }
+    .mobile-menu.open { max-height: 320px; }
   </style>
 </head>
-<body>
-  <main class="shell">
-    <section class="panel">
-      <div class="grid">
-        <div>
-          <div class="eyebrow">
-            <span class="dot"></span>
-            Site temporarily offline
-          </div>
-          <h1>Website suspended by developer.</h1>
-          <p class="lead">
-            This website has been taken offline because payment has remained overdue since March 1, 2026.
-            Service will stay unavailable until the outstanding balance is cleared.
-          </p>
+<body class="min-h-screen bg-white text-slate-900">
 
-          <div class="notice">
-            <strong>Important notice</strong>
-            <p>
-              If you are the site owner and want the website restored, contact the developer directly using the details shown here.
-            </p>
-          </div>
+  <!-- ============================================================ -->
+  <!-- NAVIGATION -->
+  <!-- ============================================================ -->
+  <nav class="fixed w-full top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-slate-200 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-20">
+        <!-- Logo -->
+        <a href="index.html" class="flex items-center space-x-2">
+          <i data-lucide="sparkles" class="w-8 h-8 text-red-600"></i>
+          <span class="text-2xl font-bold text-slate-900">Amatatek</span>
+        </a>
 
-          <div class="meta">
-            <div class="meta-card">
-              <div class="label">Status</div>
-              <div class="value">Suspended for non-payment</div>
-            </div>
-            <div class="meta-card">
-              <div class="label">Overdue Since</div>
-              <div class="value">March 1, 2026</div>
-            </div>
-          </div>
+        <!-- Desktop Menu -->
+        <div class="hidden md:flex items-center space-x-8">
+          <a href="what-we-do.html" class="text-red-600 font-semibold border-b-2 border-red-600 pb-0.5">What We Do</a>
+          <a href="index.html#case-studies" class="text-slate-700 hover:text-red-600 transition font-medium">Case Studies</a>
+          <a href="index.html#about" class="text-slate-700 hover:text-red-600 transition font-medium">About</a>
+          <a href="#contact" class="bg-red-600 text-white px-6 py-2 rounded-full hover:bg-red-700 transition shadow-md">Contact</a>
         </div>
 
-        <aside class="side">
-          <div class="meta-card">
-            <div class="label">Developer Contact</div>
-            <h2>Resolve payment and reactivate the site</h2>
-            <p>Use either contact method below for payment confirmation and restoration requests.</p>
-          </div>
+        <!-- Mobile Menu Button -->
+        <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg hover:bg-slate-100 transition" aria-label="Toggle menu">
+          <i data-lucide="menu" class="w-6 h-6" id="menu-icon-open"></i>
+          <i data-lucide="x" class="w-6 h-6 hidden" id="menu-icon-close"></i>
+        </button>
+      </div>
+    </div>
 
-          <div class="contact-card">
-            <div class="contact-title">
-              <span class="label">Email</span>
-              <span>Preferred</span>
-            </div>
-            <div class="value">
-              <a href="mailto:samsaimma@gmail.com">samsaimma@gmail.com</a>
-            </div>
-          </div>
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="mobile-menu md:hidden bg-white border-t border-slate-200">
+      <div class="px-4 py-6 space-y-4">
+        <a href="what-we-do.html" class="block text-red-600 font-semibold py-2" onclick="closeMobileMenu()">What We Do</a>
+        <a href="index.html#case-studies" class="block text-slate-700 hover:text-red-600 font-medium py-2" onclick="closeMobileMenu()">Case Studies</a>
+        <a href="index.html#about" class="block text-slate-700 hover:text-red-600 font-medium py-2" onclick="closeMobileMenu()">About</a>
+        <a href="#contact" class="block bg-red-600 text-white px-6 py-2 rounded-full text-center hover:bg-red-700" onclick="closeMobileMenu()">Contact</a>
+      </div>
+    </div>
+  </nav>
 
-          <div class="contact-card">
-            <div class="contact-title">
-              <span class="label">WhatsApp</span>
-              <span>Direct</span>
-            </div>
-            <div class="value">
-              <a href="https://wa.me/8801560035123">+8801560035123</a>
-            </div>
-          </div>
+  <!-- ============================================================ -->
+  <!-- BREADCRUMB -->
+  <!-- ============================================================ -->
+  <div class="pt-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center space-x-2 text-sm text-slate-500">
+      <a href="index.html" class="hover:text-red-600 transition">Home</a>
+      <i data-lucide="chevron-right" class="w-4 h-4"></i>
+      <span class="text-slate-900 font-medium">What We Do</span>
+    </div>
+  </div>
 
-          <div class="status-strip">
-            The original website content has been replaced with this notice on the active pages of the site.
+  <!-- ============================================================ -->
+  <!-- HERO -->
+  <!-- ============================================================ -->
+  <section class="relative pt-12 pb-24 px-4 bg-gradient-to-b from-red-50 to-white overflow-hidden">
+    <div class="absolute top-10 right-10 w-72 h-72 bg-red-100 rounded-full blur-3xl opacity-40"></div>
+    <div class="absolute bottom-10 left-10 w-96 h-96 bg-red-50 rounded-full blur-3xl opacity-40"></div>
+
+    <div class="max-w-4xl mx-auto text-center relative z-10">
+      <span class="inline-block bg-red-100 text-red-600 text-sm font-semibold px-4 py-1 rounded-full mb-6 tracking-wide uppercase animate-fade-in-up">
+        What We Do
+      </span>
+      <h1 class="text-5xl md:text-6xl font-bold mb-6 text-slate-900 leading-tight animate-fade-in-up animate-delay-100">
+        We enhance the systems your business already relies on
+      </h1>
+      <p class="text-xl text-slate-600 max-w-2xl mx-auto mb-10 animate-fade-in-up animate-delay-200">
+        We take your existing interfaces, CRMs, Revit models and management systems — everything your team uses every day — and supercharge them with AI. No disruption. No starting over. Just smarter, faster, more capable versions of what you already have.
+      </p>
+      <a href="#contact" class="inline-flex items-center gap-2 bg-red-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-red-700 transition shadow-lg animate-fade-in-up animate-delay-200">
+        Talk to us <i data-lucide="arrow-right" class="w-5 h-5"></i>
+      </a>
+    </div>
+
+    <div class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-red-300 to-transparent"></div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- HOW WE DO IT — 6 PILLARS -->
+  <!-- ============================================================ -->
+  <section id="how-we-do-it" class="py-20 px-4 bg-white">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-4xl font-bold text-center mb-4 text-slate-900">How we do it</h2>
+      <p class="text-slate-600 text-center max-w-2xl mx-auto mb-16 text-lg">
+        Our approach is built around one principle — enhance, don't replace. Here's what that looks like in practice.
+      </p>
+
+      <div class="grid md:grid-cols-3 gap-8">
+
+        <!-- Pillar 1 -->
+        <div class="bg-white p-8 rounded-2xl border-2 border-slate-200 hover:border-red-600 hover:shadow-lg transition-all duration-300 group cursor-default">
+          <div class="text-red-600 mb-4 group-hover:scale-110 transition-transform duration-300">
+            <i data-lucide="layers" class="w-10 h-10"></i>
           </div>
-        </aside>
+          <h3 class="text-xl font-bold mb-3 text-slate-900">We Work With What You Have</h3>
+          <p class="text-slate-600 leading-relaxed">Your team won't stop using the tools they rely on — and they shouldn't have to. We plug directly into your existing interfaces, workflows and platforms, enhancing them with AI rather than replacing them.</p>
+        </div>
+
+        <!-- Pillar 2 -->
+        <div class="bg-white p-8 rounded-2xl border-2 border-slate-200 hover:border-red-600 hover:shadow-lg transition-all duration-300 group cursor-default">
+          <div class="text-red-600 mb-4 group-hover:scale-110 transition-transform duration-300">
+            <i data-lucide="git-merge" class="w-10 h-10"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3 text-slate-900">CRM &amp; System Integration</h3>
+          <p class="text-slate-600 leading-relaxed">From Salesforce to HubSpot, Revit to bespoke management systems — if it's programmatic, we can connect AI to it. We bridge the gap between your current systems and the intelligence they've been missing.</p>
+        </div>
+
+        <!-- Pillar 3 -->
+        <div class="bg-white p-8 rounded-2xl border-2 border-slate-200 hover:border-red-600 hover:shadow-lg transition-all duration-300 group cursor-default">
+          <div class="text-red-600 mb-4 group-hover:scale-110 transition-transform duration-300">
+            <i data-lucide="cpu" class="w-10 h-10"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3 text-slate-900">AI-Enhanced Capabilities</h3>
+          <p class="text-slate-600 leading-relaxed">We layer powerful AI solutions on top of your existing stack — automating responses, surfacing insights, streamlining decisions — so your business moves faster without the disruption of starting over.</p>
+        </div>
+
+        <!-- Pillar 4 -->
+        <div class="bg-white p-8 rounded-2xl border-2 border-slate-200 hover:border-red-600 hover:shadow-lg transition-all duration-300 group cursor-default">
+          <div class="text-red-600 mb-4 group-hover:scale-110 transition-transform duration-300">
+            <i data-lucide="settings" class="w-10 h-10"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3 text-slate-900">Supplier &amp; API Connectivity</h3>
+          <p class="text-slate-600 leading-relaxed">We build seamless API integrations that connect your suppliers, partners and internal systems, giving AI the data it needs to work intelligently across your entire operation.</p>
+        </div>
+
+        <!-- Pillar 5 -->
+        <div class="bg-white p-8 rounded-2xl border-2 border-slate-200 hover:border-red-600 hover:shadow-lg transition-all duration-300 group cursor-default">
+          <div class="text-red-600 mb-4 group-hover:scale-110 transition-transform duration-300">
+            <i data-lucide="zap" class="w-10 h-10"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3 text-slate-900">Rapid Time to Value</h3>
+          <p class="text-slate-600 leading-relaxed">Because we enhance rather than replace, our solutions are live faster. No lengthy migrations, no retraining your team on new software — just immediate AI gains on top of familiar ground.</p>
+        </div>
+
+        <!-- Pillar 6 -->
+        <div class="bg-white p-8 rounded-2xl border-2 border-slate-200 hover:border-red-600 hover:shadow-lg transition-all duration-300 group cursor-default">
+          <div class="text-red-600 mb-4 group-hover:scale-110 transition-transform duration-300">
+            <i data-lucide="bar-chart-2" class="w-10 h-10"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-3 text-slate-900">Measurable Outcomes</h3>
+          <p class="text-slate-600 leading-relaxed">Every integration we build is tied to a business outcome. Faster enquiry handling, smarter lead routing, reduced manual effort — we measure what matters and make sure you see it.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- PULL QUOTE -->
+  <!-- ============================================================ -->
+  <section class="py-20 px-4 bg-red-600">
+    <div class="max-w-4xl mx-auto text-center">
+      <p class="text-3xl md:text-4xl font-bold text-white leading-snug">
+        &ldquo;Your team won't change how they work. They'll just be amazed at what they can now achieve.&rdquo;
+      </p>
+      <p class="text-red-200 mt-6 text-lg">&mdash; The Amatatek approach</p>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- OUR PROCESS -->
+  <!-- ============================================================ -->
+  <section class="py-20 px-4 bg-slate-50">
+    <div class="max-w-5xl mx-auto">
+      <h2 class="text-4xl font-bold text-center mb-4 text-slate-900">Our process</h2>
+      <p class="text-slate-600 text-center max-w-xl mx-auto mb-16 text-lg">
+        From first conversation to live AI integration — here's how we get you there.
+      </p>
+
+      <div class="grid md:grid-cols-4 gap-8 relative">
+
+        <!-- Step 1 -->
+        <div class="text-center relative">
+          <div class="w-16 h-16 rounded-full bg-red-600 text-white flex items-center justify-center text-2xl font-bold mx-auto mb-4 shadow-lg">01</div>
+          <div class="hidden md:block absolute top-8 left-[calc(50%+2rem)] w-[calc(100%-4rem)] h-0.5 bg-red-200"></div>
+          <h3 class="text-xl font-bold mb-2 text-slate-900">Discover</h3>
+          <p class="text-slate-600 text-sm leading-relaxed">We map your existing systems, interfaces and workflows to understand what you have and where AI can add the most value.</p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="text-center relative">
+          <div class="w-16 h-16 rounded-full bg-red-600 text-white flex items-center justify-center text-2xl font-bold mx-auto mb-4 shadow-lg">02</div>
+          <div class="hidden md:block absolute top-8 left-[calc(50%+2rem)] w-[calc(100%-4rem)] h-0.5 bg-red-200"></div>
+          <h3 class="text-xl font-bold mb-2 text-slate-900">Design</h3>
+          <p class="text-slate-600 text-sm leading-relaxed">We architect an AI solution that slots into your current stack — no rip-and-replace, just intelligent enhancement.</p>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="text-center relative">
+          <div class="w-16 h-16 rounded-full bg-red-600 text-white flex items-center justify-center text-2xl font-bold mx-auto mb-4 shadow-lg">03</div>
+          <div class="hidden md:block absolute top-8 left-[calc(50%+2rem)] w-[calc(100%-4rem)] h-0.5 bg-red-200"></div>
+          <h3 class="text-xl font-bold mb-2 text-slate-900">Integrate</h3>
+          <p class="text-slate-600 text-sm leading-relaxed">Our team builds and connects the AI layer via APIs, CRM plugins and system hooks — fully tested before go-live.</p>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="text-center">
+          <div class="w-16 h-16 rounded-full bg-red-600 text-white flex items-center justify-center text-2xl font-bold mx-auto mb-4 shadow-lg">04</div>
+          <h3 class="text-xl font-bold mb-2 text-slate-900">Optimise</h3>
+          <p class="text-slate-600 text-sm leading-relaxed">Once live, we monitor, refine and scale your AI capabilities as your business grows and your needs evolve.</p>
+        </div>
+
       </div>
 
-      <div class="footer-note">
-        Payment confirmation is required before development, hosting, or publishing service resumes.
+      <div class="text-center mt-12">
+        <a href="#contact" class="inline-flex items-center gap-2 bg-red-600 text-white px-8 py-4 rounded-full font-semibold hover:bg-red-700 transition shadow-lg">
+          Start your journey <i data-lucide="arrow-right" class="w-5 h-5"></i>
+        </a>
       </div>
-    </section>
-  </main>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- CONTACT FORM -->
+  <!-- ============================================================ -->
+  <section id="contact" class="py-20 px-4 bg-white">
+    <div class="max-w-2xl mx-auto">
+      <h2 class="text-4xl font-bold text-center mb-4 text-slate-900">Ready to enhance what you already have?</h2>
+      <p class="text-center text-slate-600 text-lg mb-10">
+        Tell us about your systems and we'll show you exactly where AI can take them.
+      </p>
+
+      <div id="form-wrapper">
+        <form id="contact-form" class="bg-white p-8 rounded-2xl border-2 border-slate-200 shadow-lg space-y-4 text-left">
+          <!-- Hidden honeypot for spam -->
+          <input type="text" name="_gotcha" style="display:none" />
+
+          <div class="grid md:grid-cols-2 gap-4">
+            <div>
+              <label for="firstName" class="block text-sm font-medium text-slate-700 mb-1">First Name*</label>
+              <input type="text" id="firstName" name="firstName" placeholder="John" required
+                class="w-full bg-white border-2 border-slate-200 rounded-lg px-4 py-3 focus:border-red-600 focus:outline-none text-slate-900 placeholder-slate-400 transition" />
+            </div>
+            <div>
+              <label for="lastName" class="block text-sm font-medium text-slate-700 mb-1">Last Name*</label>
+              <input type="text" id="lastName" name="lastName" placeholder="Doe" required
+                class="w-full bg-white border-2 border-slate-200 rounded-lg px-4 py-3 focus:border-red-600 focus:outline-none text-slate-900 placeholder-slate-400 transition" />
+            </div>
+          </div>
+
+          <div>
+            <label for="organisation" class="block text-sm font-medium text-slate-700 mb-1">Organisation Name*</label>
+            <input type="text" id="organisation" name="organisation" placeholder="Acme Ltd" required
+              class="w-full bg-white border-2 border-slate-200 rounded-lg px-4 py-3 focus:border-red-600 focus:outline-none text-slate-900 placeholder-slate-400 transition" />
+          </div>
+
+          <div>
+            <label for="email" class="block text-sm font-medium text-slate-700 mb-1">Email Address*</label>
+            <input type="email" id="email" name="email"
+              value="daryll@amatatek.com" readonly
+              class="w-full bg-slate-100 border-2 border-slate-200 rounded-lg px-4 py-3 focus:border-red-600 focus:outline-none text-slate-900 cursor-not-allowed" />
+          </div>
+
+          <div>
+            <label for="phone" class="block text-sm font-medium text-slate-700 mb-1">Phone Number*</label>
+            <input type="tel" id="phone" name="phone" placeholder="+44 7700 900000" required
+              class="w-full bg-white border-2 border-slate-200 rounded-lg px-4 py-3 focus:border-red-600 focus:outline-none text-slate-900 placeholder-slate-400 transition" />
+          </div>
+
+          <div>
+            <label for="message" class="block text-sm font-medium text-slate-700 mb-1">Your Message*</label>
+            <textarea id="message" name="message" rows="4" required
+              placeholder="Tell us about your AI challenge…"
+              class="w-full bg-white border-2 border-slate-200 rounded-lg px-4 py-3 focus:border-red-600 focus:outline-none text-slate-900 placeholder-slate-400 transition resize-vertical"></textarea>
+          </div>
+
+          <div class="flex items-start space-x-3">
+            <input type="checkbox" id="privacy" name="privacy" class="mt-1 w-4 h-4 accent-red-600" required />
+            <label for="privacy" class="text-sm text-slate-600">
+              I agree to the
+              <a href="https://amatatek.com/privacy-policy" class="text-red-600 hover:underline" target="_blank" rel="noopener noreferrer">privacy policy</a>*
+            </label>
+          </div>
+
+          <button type="submit" id="submit-btn"
+            class="w-full bg-red-600 text-white py-4 rounded-full font-semibold hover:bg-red-700 transition shadow-md flex items-center justify-center gap-2">
+            <span>Send Message</span>
+            <i data-lucide="arrow-right" class="w-5 h-5"></i>
+          </button>
+
+          <div id="form-success" class="hidden text-center py-4 px-6 bg-green-50 border border-green-200 rounded-lg">
+            <p class="text-green-700 font-medium">Thank you! We'll be in touch within 24 hours.</p>
+          </div>
+          <div id="form-error" class="hidden text-center py-4 px-6 bg-red-50 border border-red-200 rounded-lg">
+            <p class="text-red-700 font-medium">Something went wrong. Please try again or email us directly.</p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- FOOTER -->
+  <!-- ============================================================ -->
+  <footer class="bg-slate-900 text-white border-t border-slate-800 py-12 px-4">
+    <div class="max-w-6xl mx-auto">
+      <div class="grid md:grid-cols-4 gap-8 mb-8">
+        <div>
+          <a href="index.html" class="flex items-center space-x-2 mb-4 hover:opacity-80 transition">
+            <i data-lucide="sparkles" class="w-7 h-7 text-red-500"></i>
+            <span class="text-xl font-bold">Amatatek</span>
+          </a>
+          <p class="text-slate-400 text-sm">Enhancing your systems with AI — without disruption.</p>
+        </div>
+
+        <div>
+          <h4 class="font-semibold mb-4">Services</h4>
+          <ul class="space-y-2 text-slate-300">
+            <li><a href="index.html#services" class="hover:text-red-400 transition text-sm">AI Strategy</a></li>
+            <li><a href="index.html#services" class="hover:text-red-400 transition text-sm">Custom Solutions</a></li>
+            <li><a href="index.html#services" class="hover:text-red-400 transition text-sm">Your Local AI</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-semibold mb-4">Company</h4>
+          <ul class="space-y-2 text-slate-300">
+            <li><a href="index.html#about" class="hover:text-red-400 transition text-sm">About</a></li>
+            <li><a href="index.html#case-studies" class="hover:text-red-400 transition text-sm">Case Studies</a></li>
+            <li><a href="#contact" class="hover:text-red-400 transition text-sm">Contact</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-semibold mb-4">Legal</h4>
+          <ul class="space-y-2 text-slate-300">
+            <li><a href="https://amatatek.com/privacy-policy" class="hover:text-red-400 transition text-sm">Privacy Policy</a></li>
+            <li><a href="https://amatatek.com/terms-of-service" class="hover:text-red-400 transition text-sm">Terms of Service</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="border-t border-slate-700 pt-8 text-center text-slate-400 text-sm">
+        <p>&copy; Amatatek 2025 &ndash; All rights reserved</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================================ -->
+  <!-- SCRIPTS -->
+  <!-- ============================================================ -->
+  <!-- EmailJS SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+  <script>
+    // ── Lucide icons ──────────────────────────────────────────────
+    lucide.createIcons();
+
+    // ── Mobile menu ───────────────────────────────────────────────
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu    = document.getElementById('mobile-menu');
+    const menuIconOpen  = document.getElementById('menu-icon-open');
+    const menuIconClose = document.getElementById('menu-icon-close');
+
+    function closeMobileMenu() {
+      mobileMenu.classList.remove('open');
+      menuIconOpen.classList.remove('hidden');
+      menuIconClose.classList.add('hidden');
+    }
+
+    mobileMenuBtn.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.toggle('open');
+      menuIconOpen.classList.toggle('hidden', isOpen);
+      menuIconClose.classList.toggle('hidden', !isOpen);
+    });
+
+    // ── EmailJS ───────────────────────────────────────────────────
+    emailjs.init('WrQ0jHoX_xt02UffR');
+
+    const form       = document.getElementById('contact-form');
+    const submitBtn  = document.getElementById('submit-btn');
+    const successMsg = document.getElementById('form-success');
+    const errorMsg   = document.getElementById('form-error');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!form.checkValidity()) { form.reportValidity(); return; }
+
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<span>Sending&hellip;</span>';
+      successMsg.classList.add('hidden');
+      errorMsg.classList.add('hidden');
+
+      const templateParams = {
+        to_email:     'daryll@amatatek.com',
+        from_name:    document.getElementById('firstName').value + ' ' + document.getElementById('lastName').value,
+        organization: document.getElementById('organisation').value,
+        email:        document.getElementById('email').value,
+        phone:        document.getElementById('phone').value,
+        message:      document.getElementById('message').value,
+        reply_to:     document.getElementById('email').value
+      };
+
+      try {
+        await emailjs.send('service_q7i4ztv', 'template_yddesso', templateParams);
+        successMsg.classList.remove('hidden');
+        form.reset();
+      } catch (err) {
+        console.error('EmailJS error:', err);
+        errorMsg.classList.remove('hidden');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<span>Send Message</span><i data-lucide="arrow-right" class="w-5 h-5"></i>';
+        lucide.createIcons();
+      }
+    });
+
+    // ── Smooth scroll for in-page anchor links ────────────────────
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+
 </body>
 </html>
